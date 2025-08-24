@@ -1,5 +1,5 @@
 # Usa una imagen base de Java 17
-FROM eclipse-temurin:17-jre
+FROM docker.io/eclipse-temurin:17-jre
 
 # Crea el directorio de trabajo
 WORKDIR /app
