@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Formulario Producto</title>
+        <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        form {
+            background: #fff;
+            padding: 20px 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            max-width: 400px;
+            margin: 0 auto 20px auto;
+        }
+        label {
+            display: block;
+            margin-top: 12px;
+            color: #555;
+        }
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 7px 10px;
+            margin-top: 4px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            margin-top: 18px;
+            background: #007bff;
+            color: #fff;
+            padding: 8px 18px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        a {
+            display: inline-block;
+            margin-top: 10px;
+            color: #007bff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1 th:text="${producto.idProducto == null ? 'Nuevo Producto' : 'Editar Producto'}"></h1>
+    <form th:action="@{/productos/guardar}" th:object="${producto}" method="post">
+        <input type="hidden" th:field="*{idProducto}" />
+        <label>Nombre:</label>
+        <input type="text" th:field="*{nombreProducto}" /><br/>
+        <label>Descripción:</label>
+        <input type="text" th:field="*{descripcion}" /><br/>
+        <label>Precio:</label>
+        <input type="number" th:field="*{precio}" /><br/>
+        <label>Cantidad:</label>
+        <input type="number" th:field="*{cantidad}" /><br/>
+        <label>Estado:</label>
+        <select th:field="*{estadoProducto}" required>
+            <option value="DISPONIBLE">DISPONIBLE</option>
+            <option value="NO_DISPONIBLE">NO DISPONIBLE</option>
+        </select><br/>
+        <label>Usuario:</label>
+        <input type="text" th:field="*{usuario}" /><br/>
+        <label>Calificación:</label>
+        <input type="number" th:field="*{calificacion}" /><br/>
+        <button type="submit">Guardar</button>
+    </form>
+    <a href="/productos">Volver</a>
+</body>
+</html>
